@@ -20,13 +20,13 @@ def parse_option():
     parser.add_argument('--batchsize', default=2, type=int, help="batch size for single GPU")
     parser.add_argument('--dataset', type=str, default='food2k', help='food2k, food101, food500')
     parser.add_argument('--image_path', type=str, default="../food2k_v2/dataset/", help='path to dataset')
-    parser.add_argument("--train_path", type=str, default="E:/datasets/food101/meta_data/train_full.txt", help='path to training list')
-    parser.add_argument("--test_path", type=str, default="E:/datasets/food101/meta_data/test_full.txt",
+    parser.add_argument("--train_path", type=str, default="../train.txt", help='path to training list')
+    parser.add_argument("--test_path", type=str, default="../test.txt",
                         help='path to testing list')
-    parser.add_argument('--weight_path', default="E:/Pretrained_model/food2k_resnet50_0.0001.pth", help='path to the pretrained model')
+    parser.add_argument('--weight_path', default="resnet50-19c8e357.pth", help='path to the pretrained model')
     parser.add_argument('--use_checkpoint', action='store_true', default=True,
                         help="whether to use gradient checkpointing to save memory")
-    parser.add_argument('--checkpoint', type=str, default="E:/Pretrained_model/model.pth",
+    parser.add_argument('--checkpoint', type=str, default="model.pth",
                         help="the path to checkpoint")
     parser.add_argument('--output_dir', default='output', type=str, metavar='PATH',
                         help='root of output folder, the full path is <output>/<model_name>/<tag> (default: output)')
