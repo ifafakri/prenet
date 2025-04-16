@@ -203,7 +203,7 @@ def main():
     for p in optimizer.param_groups:
         outputs = ''
         for k, v in p.items():
-            if k is 'params':
+            if k == 'params':
                 outputs += (k + ': ' + str(v[0].shape).ljust(30) + ' ')
             else:
                 outputs += (k + ': ' + str(v).ljust(10) + ' ')
@@ -214,7 +214,7 @@ def main():
     net = nn.DataParallel(net)
 
     if args.use_checkpoint:
-        net.load_state_dict(torch.load('resnet50-19c8e357.pth'))
+        #net.load_state_dict(torch.load('resnet50-19c8e357.pth'))
         model = torch.load(args.checkpoint).module.state_dict()
 
         net.module.load_state_dict(torch.load(args.checkpoint).module.state_dict())
