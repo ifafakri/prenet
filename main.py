@@ -18,8 +18,8 @@ def parse_option():
     parser = argparse.ArgumentParser('Progressive Region Enhancement Network(PRENet) for training and testing')
 
     parser.add_argument('--batchsize', default=2, type=int, help="batch size for single GPU")
-    parser.add_argument('--dataset', type=str, default='food101', help='food2k, food101, food500')
-    parser.add_argument('--image_path', type=str, default="E:/datasets/food101/images/", help='path to dataset')
+    parser.add_argument('--dataset', type=str, default='food2k', help='food2k, food101, food500')
+    parser.add_argument('--image_path', type=str, default="../food2k_v2/dataset/", help='path to dataset')
     parser.add_argument("--train_path", type=str, default="E:/datasets/food101/meta_data/train_full.txt", help='path to training list')
     parser.add_argument("--test_path", type=str, default="E:/datasets/food101/meta_data/test_full.txt",
                         help='path to testing list')
@@ -177,7 +177,7 @@ def main():
     net = load_model('resnet50',pretrain=False,require_grad=True,num_class=NUM_CATEGORIES)
     net.fc = nn.Linear(2048, 2000)
     state_dict = {}
-    pretrained = torch.load(args.weight_path)
+    pretrained = torch.load(args.weight_path,weights_only=False)
 
     for k, v in net.state_dict().items():
         if k[9:] in pretrained.keys() and "fc" not in k:
