@@ -227,7 +227,7 @@ def main():
         print("Unexpected keys:", unexpected)
         print('Loaded pretrained weights (except fc layer)')
 
-        net.module.load_state_dict(checkpoint)
+        
         print('load the checkpoint')
 
     if args.test:
