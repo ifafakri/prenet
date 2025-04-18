@@ -165,6 +165,8 @@ def main():
     args = parse_option()
     train_dataset, train_loader, test_dataset, test_loader = \
         load_data(image_path=args.image_path, train_dir=args.train_path, test_dir=args.test_path,batch_size=args.batchsize)
+    print(f"# Training samples: {len(train_dataset)}")
+    print(f"# Testing samples: {len(test_dataset)}")
     print('Data Preparation : Finished')
     if args.dataset == "food101":
         NUM_CATEGORIES = 101
