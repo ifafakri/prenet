@@ -180,13 +180,13 @@ def main():
     pretrained = torch.load(args.weight_path,weights_only=False)
 
     for k, v in net.state_dict().items():
-        if k[9:] in pretrained.keys() and "fc" not in k:
-            state_dict[k] = pretrained[k[9:]]
-        elif "xx" in k and re.sub(r'xx[0-9]\.?',".", k[9:]) in pretrained.keys():
-            state_dict[k] = pretrained[re.sub(r'xx[0-9]\.?',".", k[9:])]
+        
+        pretrained_key = k[9:] if k.startswith("module.") else k
+        if pretrained_key in pretrained and not pretrained_key.startswith("fc"):
+            state_dict[k] = pretrained[pretrained_key]
         else:
-            state_dict[k] = v
-            print(k)
+            print(f"Skipped loading param: {k}")
+            state_dict[k] = v  # keep the current randomly initialized weight
 
     net.load_state_dict(state_dict)
     net.fc = nn.Linear(2048, NUM_CATEGORIES)
@@ -215,7 +215,7 @@ def main():
 
     if args.use_checkpoint:
         #net.load_state_dict(torch.load('resnet50-19c8e357.pth'))
-        checkpoint = torch.load('resnet50-19c8e357.pth', map_location='cpu').module.state_dict()
+        checkpoint = torch.load('resnet50-19c8e357.pth', map_location='cpu')
 
         net.module.load_state_dict(checkpoint)
         print('load the checkpoint')
