@@ -215,7 +215,7 @@ def main():
 
     if args.use_checkpoint:
         #net.load_state_dict(torch.load('resnet50-19c8e357.pth'))
-        checkpoint = torch.load('resnet50-19c8e357.pth', map_location='cpu')
+        checkpoint = torch.load('resnet50-19c8e357.pth', map_location='cpu').module.state_dict()
 
         net.module.load_state_dict(checkpoint)
         print('load the checkpoint')
