@@ -32,7 +32,7 @@ def parse_option():
                         help='root of output folder, the full path is <output>/<model_name>/<tag> (default: output)')
     parser.add_argument("--learning_rate", default=1e-4, type=float,
                         help="The initial learning rate for SGD.")
-    parser.add_argument("--epoch", default=2, type=int,
+    parser.add_argument("--epoch", default=200, type=int,
                         help="The number of epochs.")
     parser.add_argument("--test", action='store_true', default=False,
                         help="Testing model.")
