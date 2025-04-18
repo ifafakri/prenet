@@ -17,7 +17,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 def parse_option():
     parser = argparse.ArgumentParser('Progressive Region Enhancement Network(PRENet) for training and testing')
 
-    parser.add_argument('--batchsize', default=1, type=int, help="batch size for single GPU")
+    parser.add_argument('--batchsize', default=4, type=int, help="batch size for single GPU")
     parser.add_argument('--dataset', type=str, default='food2k', help='food2k, food101, food500')
     parser.add_argument('--image_path', type=str, default="../food2k_v2/dataset/", help='path to dataset')
     parser.add_argument("--train_path", type=str, default="train.txt", help='path to training list')
@@ -32,7 +32,7 @@ def parse_option():
                         help='root of output folder, the full path is <output>/<model_name>/<tag> (default: output)')
     parser.add_argument("--learning_rate", default=1e-4, type=float,
                         help="The initial learning rate for SGD.")
-    parser.add_argument("--epoch", default=4, type=int,
+    parser.add_argument("--epoch", default=2, type=int,
                         help="The number of epochs.")
     parser.add_argument("--test", action='store_true', default=False,
                         help="Testing model.")
