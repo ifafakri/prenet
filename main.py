@@ -215,7 +215,17 @@ def main():
 
     if args.use_checkpoint:
         #net.load_state_dict(torch.load('resnet50-19c8e357.pth'))
+        
         checkpoint = torch.load('resnet50-19c8e357.pth', map_location='cpu')
+        state_dict = {}
+        for k, v in checkpoint.items():
+            if "fc" not in k:
+                state_dict[k] = v
+
+        missing, unexpected = net.module.load_state_dict(state_dict, strict=False)
+        print("Missing keys:", missing)
+        print("Unexpected keys:", unexpected)
+        print('Loaded pretrained weights (except fc layer)')
 
         net.module.load_state_dict(checkpoint)
         print('load the checkpoint')
