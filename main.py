@@ -20,8 +20,8 @@ def parse_option():
     parser.add_argument('--batchsize', default=2, type=int, help="batch size for single GPU")
     parser.add_argument('--dataset', type=str, default='food2k', help='food2k, food101, food500')
     parser.add_argument('--image_path', type=str, default="../food2k_v2/dataset/", help='path to dataset')
-    parser.add_argument("--train_path", type=str, default="../train.txt", help='path to training list')
-    parser.add_argument("--test_path", type=str, default="../test.txt",
+    parser.add_argument("--train_path", type=str, default="train.txt", help='path to training list')
+    parser.add_argument("--test_path", type=str, default="test.txt",
                         help='path to testing list')
     parser.add_argument('--weight_path', default="resnet50-19c8e357.pth", help='path to the pretrained model')
     parser.add_argument('--use_checkpoint', action='store_true', default=True,
@@ -34,7 +34,7 @@ def parse_option():
                         help="The initial learning rate for SGD.")
     parser.add_argument("--epoch", default=200, type=int,
                         help="The number of epochs.")
-    parser.add_argument("--test", action='store_true', default=True,
+    parser.add_argument("--test", action='store_true', default=False,
                         help="Testing model.")
     args, unparsed = parser.parse_known_args()
     return args
