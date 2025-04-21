@@ -19,7 +19,7 @@ def parse_option():
 
     parser.add_argument('--batchsize', default=2, type=int, help="batch size for single GPU")
     parser.add_argument('--dataset', type=str, default='food2k', help='food2k, food101, food500')
-    parser.add_argument('--image_path', type=str, default="../food2k_v2/dataset/", help='path to dataset')
+    parser.add_argument('--image_path', type=str, default="../food2k_v3/", help='path to dataset')
     parser.add_argument("--train_path", type=str, default="train.txt", help='path to training list')
     parser.add_argument("--test_path", type=str, default="test.txt",
                         help='path to testing list')
