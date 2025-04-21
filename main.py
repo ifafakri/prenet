@@ -41,6 +41,7 @@ def parse_option():
 
 def train(nb_epoch, trainloader, testloader, batch_size, store_name, start_epoch, net,optimizer,exp_lr_scheduler):
     exp_dir = store_name
+    print('train loop ')
     try:
         os.stat(exp_dir)
     except:
