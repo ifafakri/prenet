@@ -177,7 +177,7 @@ def main():
         NUM_CATEGORIES = 2000
 
 
-    net = load_model('resnet50',pretrain=True,require_grad=True,num_class=NUM_CATEGORIES)
+    net = load_model('resnet50',pretrain=False,require_grad=True,num_class=NUM_CATEGORIES)
     net.fc = nn.Linear(2048, 2000)
     state_dict = {}
     pretrained = torch.load(args.weight_path,weights_only=False)
