@@ -52,7 +52,7 @@ def train(nb_epoch, trainloader, testloader, batch_size, store_name, start_epoch
     KLLoss = nn.KLDivLoss(reduction="batchmean")
 
 
-    max_val_acc = 0
+    max_val_acc = 90
     #val_acc, val5_acc, _, _, val_loss = test(net, CELoss, batch_size, testloader)
 
     for epoch in range(start_epoch, nb_epoch):
@@ -177,7 +177,7 @@ def main():
         NUM_CATEGORIES = 2000
 
 
-    net = load_model('resnet50',pretrain=False,require_grad=True,num_class=NUM_CATEGORIES)
+    net = load_model('resnet50',pretrain=True,require_grad=True,num_class=NUM_CATEGORIES)
     net.fc = nn.Linear(2048, 2000)
     state_dict = {}
     pretrained = torch.load(args.weight_path,weights_only=False)
